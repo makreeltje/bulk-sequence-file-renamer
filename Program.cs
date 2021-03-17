@@ -1,12 +1,28 @@
 ﻿using System;
+using System.IO;
 
 namespace bulk_sequence_file_renamer
 {
     class Program
-    {
+    { 
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            FileProcessor fileProcessor = new FileProcessor(); 
+            
+            Console.Write("Give path name (ex. E:\\test):");
+            var path = Console.ReadLine();
+            
+            Console.Write("Sub directories (y = yes):");
+            var subDirectories = Console.ReadLine();
+            
+            Console.Write("File name prefix:");
+            var fileNamePrefix = Console.ReadLine();
+
+            Console.Write("Total digits:");
+            var totalDigits = Console.ReadLine();
+            
+            fileProcessor.FindFile(path, subDirectories, fileNamePrefix, totalDigits);
+            Console.ReadLine();
         }
     }
 }
