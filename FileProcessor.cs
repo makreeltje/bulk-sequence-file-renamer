@@ -7,7 +7,7 @@ namespace bulk_sequence_file_renamer
 {
     public class FileProcessor
     {
-        public void FindFile(string directory, string subDirectories, string fileNamePrefix, string totalDigits)
+        public void FindFile(string directory, string subDirectories, string fileNamePrefix, string totalDigits, string startingDigit)
         {
             FileInfo[] files = null;
             DirectoryInfo info = new DirectoryInfo(directory);
@@ -17,8 +17,6 @@ namespace bulk_sequence_file_renamer
             {
                 fmt += "0";
             }
-
-            string formatString = " {0,15:" + fmt + "}";
 
             if (subDirectories == "y")
             {
@@ -31,7 +29,7 @@ namespace bulk_sequence_file_renamer
                 files = info.GetFiles().OrderBy(p => p.CreationTime).ToArray();
             }
 
-            int i = 1;
+            int i = Convert.ToInt32(startingDigit);
             foreach (FileInfo file in files)
             {
                 Console.WriteLine("Changing " + file.Name + " to " + fileNamePrefix + i.ToString().PadLeft(Convert.ToInt32(totalDigits), '0') + file.Extension);
