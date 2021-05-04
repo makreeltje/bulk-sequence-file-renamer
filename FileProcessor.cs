@@ -30,10 +30,10 @@ namespace bulk_sequence_file_renamer
             }
 
             int i = Convert.ToInt32(startingDigit);
-            foreach (FileInfo file in files)
+            for (int j = 0; j < files.Length; j++)
             {
-                Console.WriteLine("Changing " + file.Name + " to " + fileNamePrefix + i.ToString().PadLeft(Convert.ToInt32(totalDigits), '0') + file.Extension);
-                file.MoveTo(file.Directory + "\\" + fileNamePrefix + i.ToString().PadLeft(Convert.ToInt32(totalDigits), '0') + file.Extension);
+                Console.WriteLine("Progress: " + j + " of " + files.Length + " files : Changing " + files[j].Name + " to " + fileNamePrefix + i.ToString().PadLeft(Convert.ToInt32(totalDigits), '0') + files[j].Extension);
+                files[j].MoveTo(files[j].Directory + "\\" + fileNamePrefix + i.ToString().PadLeft(Convert.ToInt32(totalDigits), '0') + files[j].Extension);
                 i++;
             }
         }
